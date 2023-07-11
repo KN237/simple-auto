@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_cl')->references('id')->on('clients')->onDelete('cascade');
             $table->foreignId('id_v')->references('id')->on('voitures')->onDelete('cascade');
             $table->date('debut');
-            $table->date('fin');
+            $table->date('fin')->nullable();
             $table->timestamps();
         });
     }

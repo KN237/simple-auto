@@ -20,7 +20,7 @@
 
 <body>
     <!-- ***** Preloader Start ***** -->
-    {{-- <div id="js-preloader" class="js-preloader">
+    <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">
@@ -29,7 +29,7 @@
                 <span></span>
             </div>
         </div>
-    </div> --}}
+    </div> 
     <!-- ***** Preloader End ***** -->
 
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -243,7 +243,8 @@
 
 
 
-
+    {!! Toastr::message() !!}
+    
     <script type="text/javascript" src="/admin/assets/scripts/main.js"></script>
 
     @stack('page-js')
@@ -256,7 +257,7 @@
  
 
     <script src="/js/main.js"></script>
-    {!! Toastr::message() !!}
+
 
 
     <script>
