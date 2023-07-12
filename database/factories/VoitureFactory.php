@@ -23,7 +23,6 @@ class VoitureFactory extends Factory
             'couleur' => fake()->colorName(),
             'image' => fake()->imageUrl(),
             'statut' => 'Disponible',
-            'quantite' => 1,
         ];
     }
 }

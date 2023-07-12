@@ -2,7 +2,7 @@
 
 @section('title')
 
-  Opérations
+  Ventes
 
 @endsection
 
@@ -23,7 +23,7 @@
                 <span class="btn-icon-wrapper pr-2 opacity-7">
                     <i class="metismenu-icon fas fa-plus"></i>
                 </span>
-                Ajouter une opération
+                Ajouter une vente
             </button>
 
         </div>
@@ -48,15 +48,14 @@
                 <thead>
                     <tr style="font-size: 14px;">
 
-                        <th>Libelle</th>
+                        <th>Voiture</th>
 
-                        <th>Debut</th>
+                        <th>Date</th>
 
-                        <th>Fin </th>
 
                         <th>Client</th>
 
-                        <th>Voiture</th>
+                        <th>Montant</th>
 
                         <th>Actions</th>
 
@@ -68,15 +67,16 @@
                     
                         <tr style="font-size: 14px;">
 
-                            <td>{{ $t->libelle }}</td>
+                           <td> <a target="_blank" title="Voir" href="{{ $t->voiture->image }}" ><img src="{{ $t->voiture->image }}" width="50" /></a></td>
 
-                            <td>{{ $t->debut }}</td>
+                       
+                            <td>{{ $t->date }}</td>
 
-                            <td>{{ $t->fin }}</td>
 
                             <td>{{ $t->client->first_name }} {{ $t->client->last_name }}</td>
 
-                            <td>{{ $t->voiture->id }}</td>
+                          
+                            <td>{{ $t->montant }}</td>
 
                             <td style="display:flex;flex-direction: column">
 
@@ -120,18 +120,13 @@
                 <form class="m-5" action="/operation" method="post">
                     @csrf
 
-                    <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Libellé</label><input name="libelle" type="text"
-                            class="form-control"></div>
+                    
 
                                <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Date de début</label><input name="debut" type="date"
+                            class="___class_+?24___">Date</label><input name="date" type="date"
                             class="form-control"></div>
 
-                             <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Date de fin</label><input name="fin" type="date"
-                            class="form-control"></div>
-
+                            <label>Client</label>
                             <select name="id_cl" class="form-control">
 
                                 @foreach($clients as $b)
@@ -142,6 +137,7 @@
                             </select>
 
 
+                             <label >Voiture</label>
 
                               <select name="id_v" class="form-control">
 
@@ -151,6 +147,11 @@
                                  @endforeach
                                 
                             </select>
+
+                            <div class="position-relative form-group"><label for="examplePassword11"
+                            class="___class_+?24___">Montant</label><input name="montant" type="number"
+                            class="form-control"></div>
+
 
 
                     <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
@@ -182,7 +183,7 @@
                   <h5><img src="/logo.png" alt="logo" width="150"></h5>
               </center>
 
-<center class="mt-2"><h4> Voulez-vous vraiment supprimer cette opération de votre liste?</h4></center>
+<center class="mt-2"><h4> Voulez-vous vraiment supprimer cette vente de votre liste?</h4></center>
 
 <center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $t->id}}'); form.submit();"
     class="btn bg-success mr-3 p-2 rounded text-white" ><i class="text-white fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger p-2 rounded  text-white"><i class="text-white fas fa-times"></i> Annuler</a></center>

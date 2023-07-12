@@ -37,15 +37,17 @@ class OperationController extends Controller
         $operation = Operation::create(
 
             [
-                'libelle' => $request->libelle,
-                'debut' => $request->debut,
-                'fin' => $request->fin,
+                'montant' => $request->montant,
+                'date' => $request->date,
                 'id_v' => $request->id_v,
                 'id_cl' => $request->id_cl,
 
             ]
 
         );
+
+        $voiture=Voiture::where('id',$request->id_v)->first();
+        $voiture->update(['statut'=>'Pas disponible']);
 
         if ($operation) {
             Toastr::success('opération ajoutée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);

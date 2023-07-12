@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->double('montant')->nullable();
             $table->foreignId('id_cl')->references('id')->on('clients')->onDelete('cascade');
             $table->foreignId('id_v')->references('id')->on('voitures')->onDelete('cascade');
-            $table->date('debut');
-            $table->date('fin')->nullable();
+            $table->date('date');
             $table->timestamps();
         });
     }

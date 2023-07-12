@@ -47,7 +47,7 @@
             <table id="example" style="width:100%" class="table table-borderless table-hover text-center">
                 <thead>
                     <tr style="font-size: 14px;">
-
+ <th>Image</th>
                         <th>Marque</th>
 
                         <th>Model </th>
@@ -55,10 +55,7 @@
                         <th>Couleur </th>
 
                          <th>Statut</th>
-
-                        <th>Quantite</th>
-
-                        <th>Image</th>
+                       
 
                         <th>Actions</th>
 
@@ -70,6 +67,8 @@
                     
                         <tr style="font-size: 14px;">
 
+                             <td> <a target="_blank" title="Voir" href="{{ $t->image }}" ><img src="{{ $t->image }}" width="50" /></a></td>
+
                             <td>{{ $t->marque }}</td>
 
                             <td>{{ $t->model }}</td>
@@ -77,10 +76,6 @@
                             <td>{{ $t->couleur }}</td>
 
                             <td>{{ $t->statut }}</td>
-
-                            <td>{{ $t->quantite }}</td>
-
-                            <td> <a target="_blank" title="Voir" href="storage/voitures/{{ $t->image }}" class="btn bg-primary-light"><i class="fas fa-eye"></i></a> </td>
 
                             <td style="display:flex;flex-direction: column">
 
@@ -140,9 +135,7 @@
                             class="___class_+?24___">Couleur</label><input name="couleur" type="color"
                             class="form-control"></div>
 
-                             <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">quantite</label><input name="quantite" type="number"
-                            class="form-control"></div>
+                           
 
                             <select name="statut" class="form-control">
 
@@ -201,9 +194,7 @@
                             class="___class_+?24___">Couleur</label><input name="couleur" type="color"
                             class="form-control" value={{ $l->couleur }}></div>
 
-                             <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">quantite</label><input name="quantite" type="number"
-                            class="form-control" value={{ $l->quantite }}></div>
+                      
 
                              <select name="statut" class="form-control">
 

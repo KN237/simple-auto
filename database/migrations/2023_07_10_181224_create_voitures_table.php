@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('marque');
             $table->string('model');
             $table->string('couleur');
-            $table->integer('quantite');
             $table->string('image');
             $table->string('statut');
             $table->timestamps();

@@ -195,7 +195,7 @@
 
                                     <i class="metismenu-icon fas fa-history"></i>
 
-                                   Opérations
+                                   Ventes
 
                                 </a>
 

@@ -12,7 +12,7 @@ class Operation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'libelle','debut','fin','id_cl','id_v'
+        'montant','date','id_cl','id_v'
     ];
 
     public function client(){

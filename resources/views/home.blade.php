@@ -41,7 +41,7 @@ Tableau de bord
                     <div class="widget-content-left">
                         <div class="widget-heading"><i class="metismenu-icon fas fa-car" style="font-size: 2rem"></i>
                         </div>
-                        <div class="widget-subheading">voitures non disponibles</div>
+                        <div class="widget-subheading">voitures vendues</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{$nondispo->count()}}</span></div>
@@ -50,6 +50,7 @@ Tableau de bord
             </div>
         </div>
     </div>
+
 
 @endsection
 

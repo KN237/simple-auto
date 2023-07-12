@@ -46,8 +46,7 @@ class VoitureController extends Controller
                     'model' => $request->model,
                     'couleur' => $request->couleur,
                     'statut' => $request->statut,
-                    'quantite' => $request->quantite,
-                    'image' => $file,
+                    'image' => 'storage/voitures/'.$file,
                 ]
 
             );
@@ -95,7 +94,6 @@ class VoitureController extends Controller
                     'model' => $request->model,
                     'couleur' => $request->couleur,
                     'statut' => $request->statut,
-                    'quantite' => $request->quantite,
             ]
 
         );
