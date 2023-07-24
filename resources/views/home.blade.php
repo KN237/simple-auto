@@ -49,7 +49,23 @@ Tableau de bord
                 </div>
             </div>
         </div>
+
+
+        <div class="col-md-12 col-xl-4">
+            <div class="card mb-3 mt-2 widget-content bg-white">
+                {!! $chart->container() !!}
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xl-8">
+            <div class="card p-5 bg-white">
+                {!! $chart2->container() !!}
+            </div>
+        </div>
+
+
     </div>
+
 
 
 @endsection
@@ -58,6 +74,11 @@ Tableau de bord
 @section('icon')
 <i class="metismenu-icon fas fa-chart-line"></i>
 @endsection
+
+@push('page-js')
+{!! $chart->script() !!}
+{!! $chart2->script() !!}
+@endpush
 
 
 
