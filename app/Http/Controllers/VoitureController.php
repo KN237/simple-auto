@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Voiture;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Client\Response;
 
 class VoitureController extends Controller
 {
@@ -14,9 +15,18 @@ class VoitureController extends Controller
      */
     public function index()
     {
-        $voitures = Voiture::all();
+        $voitures = Voiture::where('statut','Disponible')->get();
         $clients = Client::all();
-        return view('voiture', compact('voitures', 'clients'));
+        $string='Disponibles';
+        return view('voiture', compact('voitures', 'clients','string'));
+    }
+
+    public function vendu()
+    {
+        $voitures = Voiture::where('statut','<>','Disponible')->get();
+        $clients = Client::all();
+        $string='Vendues';
+        return view('voiture', compact('voitures', 'clients','string'));
     }
 
     /**
@@ -32,7 +42,7 @@ class VoitureController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->has('image')) {
+        
 
             $file = uniqid() . "." . $request->image->getClientOriginalName();
 
@@ -55,15 +65,12 @@ class VoitureController extends Controller
                 Toastr::success('Voiture ajoutée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
                 return back();
             } else {
-
-                Toastr::error('L\' ajout a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+    
+                Toastr::error('La création a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
                 return back();
             }
-        } else {
-
-            Toastr::error('L\' ajout a échoué, veuillez choisir une image', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
-            return back();
-        }
+            
+      
     }
 
     /**
@@ -115,14 +122,14 @@ class VoitureController extends Controller
     {
         $test=$voiture->delete();
  
-            if($test){
-                Toastr::success('Voiture supprimée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
-                return back();
-            }else{
-               
-                    Toastr::error('La suppression a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
-                    return back();
-                    
-                }
+       
+        if ($test) {
+            Toastr::success('Voiture supprimée de votre liste avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
+            return back();
+        } else {
+
+            Toastr::error('La suppréssion a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+        }
     }
 }

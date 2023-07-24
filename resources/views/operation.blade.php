@@ -82,7 +82,7 @@
 
                                 <center> <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $t->id}}"
-                                        class="btn bg-danger text-white deletebtn"><i class="text-white fas fa-trash"></i> Supprimer</a>
+                                        class="btn bg-danger text-white deletebtn"> Supprimer</a>
                                 </center>
                             </td>
 
@@ -100,7 +100,7 @@
 
 @endsection
 
-
+@section('modals')
 
 <!-- Ajout -->
 
@@ -111,11 +111,9 @@
 
         <div class="modal-content">
 
-            <div class="modal-body">
+        <div class="modal-header"> <h4> Ajout de vente </h4> </div>
 
-                <center>
-                    <h5><img src="/logo.png" alt="logo" width="100"></h5>
-                </center>
+            <div class="modal-body">
 
                 <form class="m-5" action="/operation" method="post">
                     @csrf
@@ -179,14 +177,10 @@
 
           <div class="modal-body">
 
-              <center>
-                  <h5><img src="/logo.png" alt="logo" width="150"></h5>
-              </center>
-
 <center class="mt-2"><h4> Voulez-vous vraiment supprimer cette vente de votre liste?</h4></center>
 
 <center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $t->id}}'); form.submit();"
-    class="btn bg-success mr-3 p-2 rounded text-white" ><i class="text-white fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger p-2 rounded  text-white"><i class="text-white fas fa-times"></i> Annuler</a></center>
+    class="btn bg-danger mr-3 p-2 rounded text-white" > Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-dark p-2 rounded  text-white"> Annuler</a></center>
     <form id="form2{{ $t->id}}" action="/operation/{{ $t->id}}" method="post"
         style="display: none;">
         @csrf
@@ -201,6 +195,8 @@
 </div>
 
 @endforeach
+
+@endsection
 
 @push('page-js')
 <script src="/main/assets/js/jquery-2.1.0.min.js"></script>

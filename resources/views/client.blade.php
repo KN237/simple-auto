@@ -82,11 +82,11 @@
 
                                 <center> <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $t->id}}"
-                                        class="btn bg-primary deletebtn text-white"><i class="fas fa-trash text-white"></i> Supprimer</a>
+                                        class="btn bg-danger deletebtn text-white"> Supprimer</a>
 
                                         <a title="modifier"
                                     data-toggle="modal" data-target="#mod{{ $t->id}}"
-                                        class="btn bg-dark text-white"><i class="fas fa-pen text-white"></i> Modifier</a>
+                                        class="btn bg-dark text-white"> Modifier</a>
                                 </center>
                             </td>
 
@@ -106,6 +106,10 @@
 
 
 
+@section('modals')
+
+
+
 <!-- Ajout -->
 
 <div class="modal fade" id="addclient" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -115,11 +119,9 @@
 
         <div class="modal-content">
 
-            <div class="modal-body">
+         <div class="modal-header"> <h4> Ajout de client </h4> </div>
 
-                <center>
-                    <h5><img src="/logo.png" alt="logo" width="100"></h5>
-                </center>
+            <div class="modal-body">
 
                 <form class="m-5" action="/client" method="post">
                     @csrf
@@ -166,12 +168,9 @@
 
             <div class="modal-content">
 
+             <div class="modal-header"> <h4> Modification de client </h4> </div>
+
                 <div class="modal-body">
-
-                    <center>
-                        <h5><img src="/logo.png" alt="logo" width="100"></h5>
-                    </center>
-
                     <form class="m-5" action="/client/{{ $l->id }}" method="post">
                         @csrf
                         @method('put')
@@ -222,14 +221,10 @@
 
           <div class="modal-body">
 
-              <center>
-                  <h5><img src="/logo.png" alt="logo" width="150"></h5>
-              </center>
-
 <center class="mt-2"><h4> Voulez-vous vraiment supprimer ce client de votre liste?</h4></center>
 
 <center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $t->id}}'); form.submit();"
-    class="btn bg-success mr-3 p-2 rounded text-white" ><i class="fas fa-check text-white mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger text-white p-2 rounded "><i class="text-white fas fa-times"></i> Annuler</a></center>
+    class="btn bg-danger mr-3 p-2 rounded text-white" >Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-dark text-white p-2 rounded "> Annuler</a></center>
     <form id="form2{{ $t->id}}" action="/client/{{ $t->id}}" method="post"
         style="display: none;">
         @csrf
@@ -244,6 +239,11 @@
 </div>
 
 @endforeach
+
+@endsection
+
+
+
 
 @push('page-js')
 <script src="/main/assets/js/jquery-2.1.0.min.js"></script>

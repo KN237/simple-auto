@@ -2,7 +2,7 @@
 
 @section('title')
 
-  Voitures
+  Voitures {{$string}}
 
 @endsection
 
@@ -31,14 +31,6 @@
 
 
 @endsection
-
-@push('page-css')
-	<!-- Select2 CSS -->
-	<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-	
-@endpush
-
 
 @section('content')
 
@@ -81,7 +73,7 @@
 
                                 <center> <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $t->id}}"
-                                        class="btn bg-primary deletebtn text-white"><i class="text-white fas fa-trash"></i> Supprimer</a>
+                                        class="btn bg-danger deletebtn text-white"><i class="text-white fas fa-trash"></i> Supprimer</a>
 
                                          <a title="modifier"
                                     data-toggle="modal" data-target="#mod{{ $t->id}}"
@@ -104,35 +96,30 @@
 @endsection
 
 
+@section('modals')
 
 <!-- Ajout -->
 
-<div class="modal fade" id="addvoiture" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="addvoiture" aria-hidden="true" style="z-index:1000000000">
 
     <div class="modal-dialog">
 
         <div class="modal-content">
+           
+           <div class="modal-header"> <h4> Ajout de voiture </h4> </div>
 
             <div class="modal-body">
-
-                <center>
-                    <h5><img src="/logo.png" alt="logo" width="100"></h5>
-                </center>
 
                 <form class="m-5" action="/voiture" method="post" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Marque</label><input name="marque" type="text"
+                    <div class="position-relative form-group">Marque <input name="marque" type="text"
                             class="form-control"></div>
 
-                               <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Model</label><input name="model" type="text"
+                               <div class="position-relative form-group">Model <input name="model" type="text"
                             class="form-control"></div>
 
-                             <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Couleur</label><input name="couleur" type="color"
+                             <div class="position-relative form-group">Couleur <input name="couleur" type="text"
                             class="form-control"></div>
 
                            
@@ -146,8 +133,7 @@
                                 
                             </select>
 
-                                <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Image</label><input name="image" type="file"
+                                <div class="position-relative form-group">Image <input name="image" type="file"
                             class="form-control"></div>
 
                     <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
@@ -172,26 +158,21 @@
 
             <div class="modal-content">
 
-                <div class="modal-body">
+            <div class="modal-header"> <h4> Modification de voiture </h4> </div>
 
-                    <center>
-                        <h5><img src="/logo.png" alt="logo" width="100"></h5>
-                    </center>
+                <div class="modal-body">
 
                     <form class="m-5" action="/voiture/{{ $l->id }}" method="post">
                         @csrf
                         @method('put')
 
-                         <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Marque</label><input name="marque" type="text"
+                         <div class="position-relative form-group">Marque <input name="marque" type="text"
                             class="form-control" value={{ $l->marque }}></div>
 
-                               <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Model</label><input name="model" type="text"
+                               <div class="position-relative form-group">Model <input name="model" type="text"
                             class="form-control" value={{ $l->model }}></div>
 
-                             <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Couleur</label><input name="couleur" type="color"
+                             <div class="position-relative form-group">Couleur <input name="couleur" type="text"
                             class="form-control" value={{ $l->couleur }}></div>
 
                       
@@ -205,8 +186,7 @@
                                 
                             </select>
 
-                                <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Image</label><input name="image" type="file"
+                                <div class="position-relative form-group">Image <input name="image" type="file"
                             class="form-control"></div>
                             
                         <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
@@ -234,14 +214,10 @@
 
           <div class="modal-body">
 
-              <center>
-                  <h5><img src="/logo.png" alt="logo" width="150"></h5>
-              </center>
-
 <center class="mt-2"><h4> Voulez-vous vraiment supprimer cette voiture de votre liste?</h4></center>
 
 <center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $t->id}}'); form.submit();"
-    class="btn bg-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1 text-white"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger p-2 rounded text-white "><i class="text-white fas fa-times"></i> Annuler</a></center>
+    class="btn bg-danger mr-3 p-2 rounded text-white" >Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-dark p-2 rounded text-white ">Annuler</a></center>
     <form id="form2{{ $t->id}}" action="/voiture/{{ $t->id}}" method="post"
         style="display: none;">
         @csrf
@@ -255,9 +231,22 @@
   </div>
 </div>
 
-@endforeach
+@endforeach 
+
+@endsection
+
+
+{{-- @push('page-css')
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+	
+@endpush
+
 
 @push('page-js')
 <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 @endpush
-
+ --}}

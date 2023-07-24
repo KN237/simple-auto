@@ -13,7 +13,6 @@ class Voiture extends Model
         'marque',
         'model',
         'couleur',
-        'quantite',
         'image',
         'statut'
     ];

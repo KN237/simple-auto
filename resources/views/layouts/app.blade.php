@@ -6,6 +6,7 @@
     <title> @yield('title') | NT Auto </title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="/admin/assets/main.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -15,22 +16,19 @@
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+   
+
 
 </head>
 
+
+
 <body>
     <!-- ***** Preloader Start ***** -->
-    <div id="js-preloader" class="js-preloader">
-        <div class="preloader-inner">
-            <span class="dot"></span>
-            <div class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div> 
+    <div id="loader"></div>
     <!-- ***** Preloader End ***** -->
+
+    @yield('modals')
 
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -155,18 +153,36 @@
                                 </a>
                             </li>
 
-                    
+
 
                             <li class="mb-4">
+                                <a href="">
+                                    <i class="metismenu-icon fa fa-car"></i>
+                                    Voitures
+
+                                </a>
+
+                                <ul>
+
+                                    <li>
                                         <a href="/voiture">
-                                            <i class="metismenu-icon fa fa-car"></i>
-                                            Voitures
+                                            <i class="metismenu-icon"></i>
+                                            Voitures disponibles
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/vvoiture">
+                                            <i class="metismenu-icon">
+                                            </i>Voitures vendues
                                         </a>
                                     </li>
 
 
 
-                       
+                                </ul>
+
+                            </li>
 
                         
                           <li class="mb-4">
@@ -242,23 +258,19 @@
     </div>
 
 
-
-    {!! Toastr::message() !!}
+@stack('page-js')
     
     <script type="text/javascript" src="/admin/assets/scripts/main.js"></script>
-
-    @stack('page-js')
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
- 
+    {!! Toastr::message() !!}
 
     <script src="/js/main.js"></script>
-
-
+    
 
     <script>
         $(function() {
@@ -293,10 +305,6 @@
         });
     </script>
 
-
-
-
-
     <!-- Deconnexion-->
 
     <div class="modal fade" id="dec" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -307,10 +315,6 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-
-                    <center>
-                        <h5><img src="/logo.png" alt="logo" width="150"></h5>
-                    </center>
 
                     <center class="mt-2">
                         <h4> Voulez-vous vraiment vous déconnecter ?</h4>
