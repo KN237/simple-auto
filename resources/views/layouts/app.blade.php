@@ -14,8 +14,9 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">   
 
+    <link href="/lightbox/css/lightbox.css" rel="stylesheet" />
    
 
 
@@ -271,7 +272,7 @@
 
     <script src="/js/main.js"></script>
     
-
+<script src="/lightbox/js/lightbox.js"></script>
     <script>
         $(function() {
             $(document).ready(function() {

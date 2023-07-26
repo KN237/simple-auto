@@ -59,7 +59,7 @@
                     
                         <tr style="font-size: 14px;">
 
-                             <td> <a target="_blank" title="Voir" href="{{ $t->image }}" ><img src="{{ $t->image }}" width="50" /></a></td>
+                             <td> <a title="Voir" href="{{ $t->image }}" data-lightbox="{{ $t->image }}" data-title="{{ $t->marque }}" ><img src="{{ $t->image }}" width="50" /></a></td>
 
                             <td>{{ $t->marque }}</td>
 
@@ -234,6 +234,12 @@
 @endforeach 
 
 @endsection
+
+
+
+@push('page-js')
+<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+@endpush
 
 
 {{-- @push('page-css')
