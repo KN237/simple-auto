@@ -39,7 +39,7 @@
             <table id="example" style="width:100%" class="table table-borderless table-hover text-center">
                 <thead>
                     <tr style="font-size: 14px;">
- <th>Image</th>
+ <th>Images</th>
                         <th>Marque</th>
 
                         <th>Model </th>
@@ -58,8 +58,27 @@
                     @foreach ($voitures as $t)
                     
                         <tr style="font-size: 14px;">
+                         <td> 
+                             @foreach ($images as $i)
+                             @if($t->id==$i->id_v)
+                            
+                             <a title="Voir" href="{{ $i->url }}" data-lightbox="{{ $t->id }}" data-title="{{ $i->url }}" >
+                             <i class="text-dark fas fa-eye"></i></a>
+                             @break
+                             @endif
+                             
+                             @endforeach
 
-                             <td> <a title="Voir" href="{{ $t->image }}" data-lightbox="{{ $t->image }}" data-title="{{ $t->marque }}" ><img src="{{ $t->image }}" width="50" /></a></td>
+                             @foreach ($images as $i)
+                             @if($t->id==$i->id_v)
+                             
+                             <a title="Voir" href="{{ $i->url }}" data-lightbox="{{ $t->id }}" data-title="{{ $i->url }}" >
+                             </a>
+                             
+                             @endif
+                             @endforeach
+
+                             </td>
 
                             <td>{{ $t->marque }}</td>
 
@@ -73,11 +92,11 @@
 
                                 <center> <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $t->id}}"
-                                        class="btn bg-danger deletebtn text-white"><i class="text-white fas fa-trash"></i> Supprimer</a>
+                                        class="btn bg-danger deletebtn text-white"><i class="text-white "></i> Supprimer</a>
 
                                          <a title="modifier"
                                     data-toggle="modal" data-target="#mod{{ $t->id}}"
-                                        class="btn bg-dark text-white"><i class="fas fa-pen text-white"></i> Modifier</a>
+                                        class="btn bg-dark text-white"><i class=" text-white"></i> Modifier</a>
                                 </center>
                             </td>
 
@@ -133,8 +152,8 @@
                                 
                             </select>
 
-                                <div class="position-relative form-group">Image <input name="image" type="file"
-                            class="form-control"></div>
+                                <div class="position-relative form-group">Image <input name="images[]" type="file"
+                            class="form-control" multiple></div>
 
                     <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
 
@@ -186,8 +205,8 @@
                                 
                             </select>
 
-                                <div class="position-relative form-group">Image <input name="image" type="file"
-                            class="form-control"></div>
+                                <div class="position-relative form-group">Image <input name="images[]" type="file"
+                            class="form-control" multiple></div>
                             
                         <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
 

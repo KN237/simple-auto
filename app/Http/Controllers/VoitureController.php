@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Client;
 use App\Models\Voiture;
 use Illuminate\Http\Request;
@@ -15,18 +16,20 @@ class VoitureController extends Controller
      */
     public function index()
     {
-        $voitures = Voiture::where('statut','Disponible')->get();
+        $voitures = Voiture::where('statut', 'Disponible')->get();
         $clients = Client::all();
-        $string='Disponibles';
-        return view('voiture', compact('voitures', 'clients','string'));
+        $images = Image::all();
+        $string = 'Disponibles';
+        return view('voiture', compact('voitures', 'clients', 'string', 'images'));
     }
 
     public function vendu()
     {
-        $voitures = Voiture::where('statut','<>','Disponible')->get();
+        $voitures = Voiture::where('statut', '<>', 'Disponible')->get();
         $clients = Client::all();
-        $string='Vendues';
-        return view('voiture', compact('voitures', 'clients','string'));
+        $string = 'Vendues';
+        $images = Image::all();
+        return view('voiture', compact('voitures', 'clients', 'string', 'images'));
     }
 
     /**
@@ -42,35 +45,40 @@ class VoitureController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-            $file = uniqid() . "." . $request->image->getClientOriginalName();
-
-            $request->image->storeAs('voitures', $file, 'public');
 
 
-            $tb = Voiture::create(
+        $tb = Voiture::create(
 
-                [
-                    'marque' => $request->marque,
-                    'model' => $request->model,
-                    'couleur' => $request->couleur,
-                    'statut' => $request->statut,
-                    'image' => 'storage/voitures/'.$file,
-                ]
+            [
+                'marque' => $request->marque,
+                'model' => $request->model,
+                'couleur' => $request->couleur,
+                'statut' => $request->statut,
+            ]
 
-            );
+        );
 
-            if ($tb) {
-                Toastr::success('Voiture ajoutée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
-                return back();
-            } else {
-    
-                Toastr::error('La création a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
-                return back();
+        if ($request->hasfile('images')) {
+
+            foreach ($request->images as $imagefile) {
+                
+                $image = new Image;
+                $file = uniqid() . "." . $imagefile->getClientOriginalName();
+                $imagefile->storeAs('voitures', $file, 'public');
+                $image->url = 'storage/voitures/' . $file;
+                $image->id_v = $tb->id;
+                $image->save();
             }
-            
-      
+        }
+
+        if ($tb) {
+            Toastr::success('Voiture ajoutée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
+            return back();
+        } else {
+
+            Toastr::error('La création a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+        }
     }
 
     /**
@@ -97,14 +105,24 @@ class VoitureController extends Controller
         $test = $voiture->update(
 
             [
-                    'marque' => $request->marque,
-                    'model' => $request->model,
-                    'couleur' => $request->couleur,
-                    'statut' => $request->statut,
+                'marque' => $request->marque,
+                'model' => $request->model,
+                'couleur' => $request->couleur,
+                'statut' => $request->statut,
             ]
 
         );
 
+        if ($request->file('images')) {
+            foreach ($request->file('images') as $imagefile) {
+                $file = uniqid() . "." . $imagefile->getClientOriginalName();
+                $image = new Image;
+                $imagefile->storeAs('voitures', $file, 'public');
+                $image->url = 'storage/voitures/' . $file;
+                $image->id_v = $voiture->id;
+                $image->save();
+            }
+        }
         if ($test) {
             Toastr::success('Voiture modifiée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
             return back();
@@ -120,9 +138,9 @@ class VoitureController extends Controller
      */
     public function destroy(Voiture $voiture)
     {
-        $test=$voiture->delete();
- 
-       
+        $test = $voiture->delete();
+
+
         if ($test) {
             Toastr::success('Voiture supprimée de votre liste avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
             return back();

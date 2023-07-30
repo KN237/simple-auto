@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Client;
 use App\Models\Voiture;
 use App\Models\Operation;
@@ -18,7 +19,8 @@ class OperationController extends Controller
         $clients = Client::all();
         $operations = Operation::all();
         $voitures = Voiture::all();
-        return view('operation', compact('clients', 'operations', 'voitures'));
+        $images = Image::all();
+        return view('operation', compact('clients', 'operations', 'voitures','images'));
     }
 
     /**

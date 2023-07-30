@@ -21,7 +21,6 @@ class VoitureFactory extends Factory
             'marque' => Str::random(15),
             'model' => Str::random(10),
             'couleur' => fake()->colorName(),
-            'image' => fake()->imageUrl(),
             'statut' => 'Disponible',
         ];
     }

@@ -13,12 +13,16 @@ class Voiture extends Model
         'marque',
         'model',
         'couleur',
-        'image',
         'statut'
     ];
     public function operations() {
         return $this->hasMany(Operation::class,'id_v');
     }
+
+    public function images() {
+        return $this->hasMany(Image::class,'id_v');
+    }
+
 
     
 }

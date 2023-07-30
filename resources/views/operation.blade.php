@@ -67,9 +67,29 @@
                     
                         <tr style="font-size: 14px;">
 
-                           <td> <a target="_blank" title="Voir" href="{{ $t->voiture->image }}" ><img src="{{ $t->voiture->image }}" width="50" /></a></td>
+                            <td> 
+                             @foreach ($images as $i)
+                             @if($t->voiture->id==$i->id_v)
+                            
+                             <a title="Voir" href="{{ $i->url }}" data-lightbox="{{ $t->voiture->id}}" data-title="{{ $i->url }}" >
+                             <i class="text-dark fas fa-eye"></i></a>
+                             @break
+                             @endif
+                             
+                             @endforeach
 
-                       
+                             @foreach ($images as $i)
+                             @if($t->voiture->id==$i->id_v)
+                             
+                             <a title="Voir" href="{{ $i->url }}" data-lightbox="{{ $t->voiture->id }}" data-title="{{ $i->url }}" >
+                             </a>
+                             
+                             @endif
+                             @endforeach
+
+                             </td>
+
+
                             <td>{{ $t->date }}</td>
 
 
