@@ -181,7 +181,7 @@
 
                 <div class="modal-body">
 
-                    <form class="m-5" action="/voiture/{{ $l->id }}" method="post">
+                    <form class="m-5" action="/voiture/{{ $l->id }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
 

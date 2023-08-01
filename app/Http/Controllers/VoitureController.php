@@ -112,9 +112,9 @@ class VoitureController extends Controller
             ]
 
         );
-
+        
         if ($request->hasfile('images')) {
-
+            
             foreach ($request->images as $imagefile) {
                 
                 $image = new Image;
