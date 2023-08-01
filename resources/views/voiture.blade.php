@@ -35,7 +35,7 @@
 @section('content')
 
     <div class="main-card mb-3 card">
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <table id="example" style="width:100%" class="table table-borderless table-hover text-center">
                 <thead>
                     <tr style="font-size: 14px;">

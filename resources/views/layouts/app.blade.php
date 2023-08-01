@@ -18,7 +18,13 @@
 
     <link href="/lightbox/css/lightbox.css" rel="stylesheet" />
    
+<style>
 
+a.btn.text-white{
+    width:150px;
+}
+
+</style>
 
 </head>
 
