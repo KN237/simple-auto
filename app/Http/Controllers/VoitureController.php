@@ -113,16 +113,19 @@ class VoitureController extends Controller
 
         );
 
-        if ($request->file('images')) {
-            foreach ($request->file('images') as $imagefile) {
-                $file = uniqid() . "." . $imagefile->getClientOriginalName();
+        if ($request->hasfile('images')) {
+
+            foreach ($request->images as $imagefile) {
+                
                 $image = new Image;
+                $file = uniqid() . "." . $imagefile->getClientOriginalName();
                 $imagefile->storeAs('voitures', $file, 'public');
                 $image->url = 'storage/voitures/' . $file;
                 $image->id_v = $voiture->id;
                 $image->save();
             }
         }
+
         if ($test) {
             Toastr::success('Voiture modifiée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
             return back();

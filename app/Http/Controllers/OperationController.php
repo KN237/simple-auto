@@ -18,7 +18,7 @@ class OperationController extends Controller
     {
         $clients = Client::all();
         $operations = Operation::all();
-        $voitures = Voiture::all();
+        $voitures = Voiture::where('statut', 'Disponible')->get();
         $images = Image::all();
         return view('operation', compact('clients', 'operations', 'voitures','images'));
     }
