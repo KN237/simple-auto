@@ -103,6 +103,11 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'reply_to' => [
+        'address' => 'no-reply@gdauto.com',
+        'name' => 'GDAUTO',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

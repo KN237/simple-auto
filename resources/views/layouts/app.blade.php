@@ -226,7 +226,17 @@ a.btn.text-white{
 
 
                           
+<li class="mb-4">
 
+                                <a href="/utilisateur">
+
+                                    <i class="metismenu-icon fa fa-user"></i>
+
+                                    Utilisateurs
+
+                                </a>
+
+                            </li>
                         </ul>
                     </div>
                 </div>

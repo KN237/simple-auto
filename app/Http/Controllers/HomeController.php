@@ -38,11 +38,11 @@ class HomeController extends Controller
 
         foreach ($dispo as $v) {
             $tmp=[];
-            if(!$label->contains($v->marque)){
-                $label->push($v->marque);
-                $data[$v->marque]=1;
+            if(!$label->contains( strtolower($v->marque))){
+                $label->push(strtolower($v->marque));
+                $data[strtolower($v->marque)]=1;
             } else {
-                $data[$v->marque]= intval($data[$v->marque])+1;
+                $data[strtolower($v->marque)]= intval($data[strtolower($v->marque)])+1;
             }
         }
 

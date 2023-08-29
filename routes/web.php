@@ -19,5 +19,6 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/vvoiture', [App\Http\Controllers\VoitureController::class, 'vendu']);
 Route::resource('/client', 'App\Http\Controllers\ClientController');
+Route::resource('/utilisateur', 'App\Http\Controllers\UserController');
 Route::resource('/voiture', 'App\Http\Controllers\VoitureController');
 Route::resource('/operation', 'App\Http\Controllers\OperationController');

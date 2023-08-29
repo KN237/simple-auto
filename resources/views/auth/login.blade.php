@@ -31,7 +31,7 @@
 								<div class="card-body p-md-5">
 									<div class="text-center">
 										<img src="/logo.png" width="80" alt="">
-										<h3 class="mt-4 font-weight-bold">Bienvenue</h3>
+										<h3 class="mt-4 font-weight-bold">Bienvenue sur GD AUTO</h3>
 									</div>
 									<hr>
                                     <form method="POST" action="{{ route('login') }}">
@@ -65,12 +65,12 @@
                                                 </label>		
                                             </div>
 										</div>
-										{{-- <div class="form-group col text-right">  @if (Route::has('password.request'))
+										<div class="form-group col text-right">  @if (Route::has('password.request'))
                                             <a class="btn  taxt-dark" href="{{ route('password.request') }}"> 
                                           <span style="font-size: 90%" >      <i class='bx bxs-key mr-2'></i> {{ __('Mot de passe oublié ?') }} </span>
                                             </a>
                                         @endif
-										</div> --}}
+										</div>
 									</div>
 									<div class="btn-group mt-3 w-100">
                                         <button type="submit" class="btn btn-dark">

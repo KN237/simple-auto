@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>Mot de passe oublier</title>
+	<title>Mot de passe oublié</title>
 <!--favicon-->
 	<link rel="icon" href="/logo.png" type="image/png" />
 	<!-- loader-->
@@ -30,6 +30,9 @@
 					</div>
 					<h4 class="mt-5 font-weight-bold">Mot de passe oublié?</h4>
 					<p class="text-muted">Veuillez Entrez votre adresse e-mail pour réinitialiser le mot de passe </p>
+					@if (session('status'))
+   <p class="alert alert-success">{{ session('status') }}</p>
+@endif
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 					<div class="form-group mt-5">
