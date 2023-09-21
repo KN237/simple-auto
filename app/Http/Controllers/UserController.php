@@ -107,7 +107,7 @@ class UserController extends Controller
     {
         $test = User::where('id',$user)->first()->delete();
 
-
+//
         if ($test) {
             Toastr::success('Utilisateur supprimé de votre liste avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
             return back();
